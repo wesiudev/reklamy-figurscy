@@ -1,0 +1,17 @@
+{
+  "name": "reklamyfigurscy.pl",
+  "short_name": "Reklamy Figurscy",
+  "description": "Reklamy Figurscy oferta reklamowa: Bilboardy, Litery blokowe, Banery, Flagi, Maszty, Kasetony, Reklamy Na Autach",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "icons": [
+    {
+      "src": "/favicons/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "related_applications": []
+}
