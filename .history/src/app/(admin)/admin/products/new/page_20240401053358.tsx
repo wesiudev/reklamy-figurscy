@@ -1,6 +1,6 @@
 "use client";
+import TextInput from "@/components/AdminComponents/TextInput";
 import Image from "next/image";
-import Input from "@/components/AdminComponents/Input";
 import Link from "next/link";
 import { useState } from "react";
 import {

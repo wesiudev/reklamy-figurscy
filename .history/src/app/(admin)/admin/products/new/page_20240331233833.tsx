@@ -1,6 +1,6 @@
 "use client";
+import TextInput from "@/components/AdminComponents/TextInput";
 import Image from "next/image";
-import Input from "@/components/AdminComponents/Input";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -46,11 +46,10 @@ export default function Page() {
           currentInput.type === "text" ? "z-10 block" : "-z-10 hidden"
         }`}
       >
-        <Input
+        <TextInput
           value={productInfo[currentInput.title]}
           title={currentInput.title}
           handleChange={handleTextInput}
-          type={currentInput.type}
         />
       </div>
       <div className="w-full bg-white min-h-screen">
@@ -68,7 +67,7 @@ export default function Page() {
               value={productInfo.title}
               type="text"
               title="title"
-              setInput={setCurrentInput}
+              setInput={setProductInfo}
               optional={false}
             />
           </div>
@@ -79,7 +78,7 @@ export default function Page() {
                 value={productInfo.shortDesc}
                 type="html"
                 title="shortDesc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={false}
               />
               <ContentButton
@@ -87,7 +86,7 @@ export default function Page() {
                 value={productInfo.text1Title}
                 type="text"
                 title="text1Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -95,7 +94,7 @@ export default function Page() {
                 value={productInfo.text1Desc}
                 type="html"
                 title="text1Desc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -103,7 +102,7 @@ export default function Page() {
                 value={productInfo.text2Title}
                 type="text"
                 title="text2Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -111,7 +110,7 @@ export default function Page() {
                 value={productInfo.text2Desc}
                 type="html"
                 title="text2Desc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
             </div>
@@ -130,15 +129,15 @@ export default function Page() {
                 value={productInfo.text2Desc}
                 type="text"
                 title="text3Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
                 label="Opis tekstu 3"
                 value={productInfo.text3Desc}
-                type="html"
+                type="text"
                 title="text3Desc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
             </div>
@@ -168,7 +167,7 @@ export default function Page() {
               value={productInfo.text4Title}
               type="text"
               title="text4Title"
-              setInput={setCurrentInput}
+              setInput={setProductInfo}
               optional={true}
             />
             <ContentButton
@@ -176,7 +175,7 @@ export default function Page() {
               value={productInfo.text4Desc}
               type="html"
               title="text4Desc"
-              setInput={setCurrentInput}
+              setInput={setProductInfo}
               optional={true}
             />
           </div>
@@ -189,8 +188,8 @@ export default function Page() {
             value={productInfo.imagesHeadingSmallText}
             type="text"
             title="imagesHeadingSmallText"
-            setInput={setCurrentInput}
-            optional={false}
+            setInput={setProductInfo}
+            optional={true}
           />
           <ContentButton
             label="Tytuł do zdjęć realizacji np. Nasze ostatnie realizacje - Flagi i
@@ -198,8 +197,8 @@ export default function Page() {
             value={productInfo.imagesHeadingMainText}
             type="text"
             title="imagesHeadingMainText"
-            setInput={setCurrentInput}
-            optional={false}
+            setInput={setProductInfo}
+            optional={true}
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-6">

@@ -15,7 +15,6 @@ export default async function Page() {
   return (
     <div className="min-h-screen">
       <UnderHeaderInfo />
-
       <ContactInfo />
       <Hero />
       <GetQuote />

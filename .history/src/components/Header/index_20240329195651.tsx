@@ -67,7 +67,7 @@ export default function Header() {
             className={`fixed flex flex-col justify-center xl:justify-end top-0 left-0 bg-white w-full h-max xl:w-auto xl:h-auto xl:flex-row items-center xl:space-x-3 xl:-ml-3 font-semibold shadow-black xl:relative ${
               menuShow
                 ? "translate-y-[47%] z-10"
-                : "z-[-10] xl:z-0 opacity-0 xl:opacity-100 -translate-y-[100%] xl:-translate-y-0"
+                : "z-[-10] opacity-0 xl:opacity-100 -translate-y-[100%] xl:-translate-y-0"
             } duration-300 ${showHeader ? "" : ""}`}
           >
             <div className="absolute left-0 top-0 h-2"></div>
@@ -91,7 +91,7 @@ export default function Header() {
             <Link
               href="tel:+48564624985"
               title="Zadzwoń"
-              className="relative group text-white font-bold"
+              className="relative group text-white font-bold z-20"
             >
               <div className="py-2 px-4 rounded-3xl bg-[#020cb1]">
                 DARMOWA WYCENA

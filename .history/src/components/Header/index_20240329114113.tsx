@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaEnvelope, FaPhoneAlt, FaPhoneVolume } from "react-icons/fa";
-import ContactInfo from "./ContactInfo";
 export default function Header() {
   const [hovered, setHovered] = useState(-1);
   const handleMouseEnter = (index: number) => {
@@ -14,10 +13,18 @@ export default function Header() {
     setHovered(-1);
   };
 
+  const [currentMailVisible, setCurrentMailVisible] = useState(0);
   const [activeItem, setActiveItem] = useState(-1);
 
   const [menuShow, setMenuShow] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentMailVisible((prev) => prev + 1);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     let previousScrollPosition = window.scrollY;
@@ -40,9 +47,7 @@ export default function Header() {
     <>
       <div
         className={`py-4 z-[500] sticky top-0 left-0 bg-white border-gray-300 border-b flex flex-row items-center w-full justify-between px-4 md:px-8 lg:px-12 xl:px-20 2xl:px-32 ${
-          showHeader || menuShow
-            ? "xl:-translate-y-0"
-            : "xl:-translate-y-[100%]"
+          showHeader || menuShow ? "-translate-y-0" : "-translate-y-[100%]"
         } duration-300`}
       >
         <Link
@@ -64,10 +69,10 @@ export default function Header() {
         </Link>
         <div className="flex flex-col items-end justify-center">
           <div
-            className={`fixed flex flex-col justify-center xl:justify-end top-0 left-0 bg-white w-full h-max xl:w-auto xl:h-auto xl:flex-row items-center xl:space-x-3 xl:-ml-3 font-semibold shadow-black xl:relative ${
+            className={`fixed flex flex-col justify-center xl:justify-normal top-0 left-0 bg-white w-full h-max xl:w-auto xl:h-auto xl:flex-row items-center xl:space-x-3 xl:-ml-3 font-semibold shadow-black xl:relative ${
               menuShow
                 ? "translate-y-[47%] z-10"
-                : "z-[-10] xl:z-0 opacity-0 xl:opacity-100 -translate-y-[100%] xl:-translate-y-0"
+                : "z-[-10] opacity-0 -translate-y-[100%]"
             } duration-300 ${showHeader ? "" : ""}`}
           >
             <div className="absolute left-0 top-0 h-2"></div>
@@ -93,7 +98,7 @@ export default function Header() {
               title="Zadzwoń"
               className="relative group text-white font-bold"
             >
-              <div className="py-2 px-4 rounded-3xl bg-[#020cb1]">
+              <div className="py-2 px-4 rounded-3xl bg-[#020cb1] ">
                 DARMOWA WYCENA
               </div>
               <div
@@ -104,11 +109,10 @@ export default function Header() {
               </div>
             </Link>
           </div>
+          <ContactInfo />
         </div>
         <button
-          className={`relative !z-[2000] xl:hidden menu ${
-            menuShow ? "opened" : ""
-          }`}
+          className={`relative !z-[2000] menu ${menuShow ? "opened" : ""}`}
           onClick={() => setMenuShow(!menuShow)}
           aria-expanded={menuShow}
           aria-label="Main Menu"

@@ -1,5 +1,4 @@
 import GetQuote from "@/components/GetQuote";
-import ContactInfo from "@/components/Header/ContactInfo";
 import UnderHeaderInfo from "@/components/Header/UnderHeaderInfo";
 import Hero from "@/components/Hero";
 import { Metadata } from "next";
@@ -16,7 +15,6 @@ export default async function Page() {
     <div className="min-h-screen">
       <UnderHeaderInfo />
 
-      <ContactInfo />
       <Hero />
       <GetQuote />
     </div>

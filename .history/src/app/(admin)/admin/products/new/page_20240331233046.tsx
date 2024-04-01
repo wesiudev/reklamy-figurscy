@@ -1,6 +1,6 @@
 "use client";
+import TextInput from "@/components/AdminComponents/TextInput";
 import Image from "next/image";
-import Input from "@/components/AdminComponents/Input";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -46,11 +46,10 @@ export default function Page() {
           currentInput.type === "text" ? "z-10 block" : "-z-10 hidden"
         }`}
       >
-        <Input
+        <TextInput
           value={productInfo[currentInput.title]}
           title={currentInput.title}
           handleChange={handleTextInput}
-          type={currentInput.type}
         />
       </div>
       <div className="w-full bg-white min-h-screen">
@@ -68,7 +67,7 @@ export default function Page() {
               value={productInfo.title}
               type="text"
               title="title"
-              setInput={setCurrentInput}
+              setInput={setProductInfo}
               optional={false}
             />
           </div>
@@ -79,7 +78,7 @@ export default function Page() {
                 value={productInfo.shortDesc}
                 type="html"
                 title="shortDesc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={false}
               />
               <ContentButton
@@ -87,7 +86,7 @@ export default function Page() {
                 value={productInfo.text1Title}
                 type="text"
                 title="text1Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -95,7 +94,7 @@ export default function Page() {
                 value={productInfo.text1Desc}
                 type="html"
                 title="text1Desc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -103,7 +102,7 @@ export default function Page() {
                 value={productInfo.text2Title}
                 type="text"
                 title="text2Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
@@ -111,7 +110,7 @@ export default function Page() {
                 value={productInfo.text2Desc}
                 type="html"
                 title="text2Desc"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
             </div>
@@ -120,7 +119,9 @@ export default function Page() {
               <div className="w-full">
                 <button
                   className="add_image_btn flex items-center justify-center text-zinc-800"
-                  // CHOOSE IMAGE FROM LOCAL IMAGES (BLOB, NOT UPLOADED YET)
+                  // todo
+                  // todo
+                  // todo
                 >
                   <FaImage className="text-7xl" />
                 </button>
@@ -130,17 +131,28 @@ export default function Page() {
                 value={productInfo.text2Desc}
                 type="text"
                 title="text3Title"
-                setInput={setCurrentInput}
+                setInput={setProductInfo}
                 optional={true}
               />
               <ContentButton
                 label="Opis tekstu 3"
                 value={productInfo.text3Desc}
-                type="html"
-                title="text3Desc"
-                setInput={setCurrentInput}
+                type="text"
+                title="text3Title"
+                setInput={setProductInfo}
                 optional={true}
               />
+              <div className="">
+                <button
+                  onClick={() =>
+                    setCurrentInput({ type: "html", title: "text4Desc" })
+                  }
+                  className="add_content_btn mt-4"
+                >
+                  Opis tekstu 3 <br />{" "}
+                  <span className="text-sm font-normal">(opcjonalnie)</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -163,44 +175,51 @@ export default function Page() {
             </button>
           </div>{" "}
           <div className="flex flex-col pl-4">
-            <ContentButton
-              label="Tytuł tekstu 4"
-              value={productInfo.text4Title}
-              type="text"
-              title="text4Title"
-              setInput={setCurrentInput}
-              optional={true}
-            />
-            <ContentButton
-              label="Opis tekstu 4"
-              value={productInfo.text4Desc}
-              type="html"
-              title="text4Desc"
-              setInput={setCurrentInput}
-              optional={true}
-            />
+            <button
+              onClick={() =>
+                setCurrentInput({ type: "text", title: "text5Title" })
+              }
+              className="add_content_btn"
+            >
+              Tytuł tekstu 4 <br />{" "}
+              <span className="text-sm font-normal">(opcjonalnie)</span>
+            </button>
+            <button
+              className="add_content_btn mt-4"
+              onClick={() =>
+                setCurrentInput({ type: "html", title: "text5Desc" })
+              }
+            >
+              Opis tekstu 4 <br />{" "}
+              <span className="text-sm font-normal">(opcjonalnie)</span>
+            </button>
           </div>
         </div>
 
         <div className="p-12 flex flex-col items-center justify-center">
-          <ContentButton
-            label="Mały tekst nad tytułem zdjęć np. 30 lat doświadczenia / pracujemy z pasją / 1000 zadowolonych
-              klientów"
-            value={productInfo.imagesHeadingSmallText}
-            type="text"
-            title="imagesHeadingSmallText"
-            setInput={setCurrentInput}
-            optional={false}
-          />
-          <ContentButton
-            label="Tytuł do zdjęć realizacji np. Nasze ostatnie realizacje - Flagi i
-              Maszty"
-            value={productInfo.imagesHeadingMainText}
-            type="text"
-            title="imagesHeadingMainText"
-            setInput={setCurrentInput}
-            optional={false}
-          />
+          <button
+            className="add_content_btn"
+            onClick={() =>
+              setCurrentInput({ type: "text", title: "imagesHeadingSmallText" })
+            }
+          >
+            Mały tekst nad tytułem zdjęć <br />
+            <span className="text-sm font-normal">
+              (np. 30 lat doświadczenia / pracujemy z pasją / 1000 zadowolonych
+              klientów)
+            </span>
+          </button>
+          <button
+            className="add_content_btn mt-2"
+            onClick={() =>
+              setCurrentInput({ type: "text", title: "imagesHeadingMainText" })
+            }
+          >
+            Tytuł do zdjęć realizacji <br />{" "}
+            <span className="text-sm font-normal">
+              (np. Nasze ostatnie realizacje - Flagi i Maszty)
+            </span>
+          </button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-6">
             {selectedImages?.map((image: any, i: any) => (

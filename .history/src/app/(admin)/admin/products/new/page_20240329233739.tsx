@@ -1,6 +1,6 @@
 "use client";
+import TextInput from "@/components/AdminComponents/TextInput";
 import Image from "next/image";
-import Input from "@/components/AdminComponents/Input";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -9,7 +9,6 @@ import {
   FaLongArrowAltRight,
   FaTh,
 } from "react-icons/fa";
-import ContentButton from "../../../../../components/AdminComponents/ContentButton";
 
 export default function Page() {
   const [selectedImages, setSelectedImages] = useState<any[]>([]);
@@ -46,11 +45,10 @@ export default function Page() {
           currentInput.type === "text" ? "z-10 block" : "-z-10 hidden"
         }`}
       >
-        <Input
+        <TextInput
           value={productInfo[currentInput.title]}
           title={currentInput.title}
           handleChange={handleTextInput}
-          type={currentInput.type}
         />
       </div>
       <div className="w-full bg-white min-h-screen">
@@ -63,84 +61,95 @@ export default function Page() {
         />
         <div className="p-12">
           <div className="mx-auto text-center w-max mt-12">
-            <ContentButton
-              label="Nazwa produktu"
-              value={productInfo.title}
-              type="text"
-              title="title"
-              setInput={setCurrentInput}
-              optional={false}
-            />
+            <button
+              onClick={() => setCurrentInput({ type: "text", title: "title" })}
+              className="add_content_btn"
+            >
+              Nazwa produktu
+            </button>
           </div>
+
           <div className="grid grid-cols-2 mx-auto mt-12">
             <div className="flex flex-col items-center">
-              <ContentButton
-                label="Krótki opis"
-                value={productInfo.shortDesc}
-                type="html"
-                title="shortDesc"
-                setInput={setCurrentInput}
-                optional={false}
-              />
-              <ContentButton
-                label="Tytuł tekstu 1"
-                value={productInfo.text1Title}
-                type="text"
-                title="text1Title"
-                setInput={setCurrentInput}
-                optional={true}
-              />
-              <ContentButton
-                label="Opis tekstu 1"
-                value={productInfo.text1Desc}
-                type="html"
-                title="text1Desc"
-                setInput={setCurrentInput}
-                optional={true}
-              />
-              <ContentButton
-                label="Tytuł tekstu 2"
-                value={productInfo.text2Title}
-                type="text"
-                title="text2Title"
-                setInput={setCurrentInput}
-                optional={true}
-              />
-              <ContentButton
-                label="Opis tekstu 2"
-                value={productInfo.text2Desc}
-                type="html"
-                title="text2Desc"
-                setInput={setCurrentInput}
-                optional={true}
-              />
+              <div className="">
+                <button
+                  className="add_content_btn"
+                  onClick={() =>
+                    setCurrentInput({ type: "text", title: "shortDesc" })
+                  }
+                >
+                  Krótki opis
+                </button>
+              </div>
+              {/* title description input */}
+              <div className="">
+                <button
+                  className="add_content_btn mt-12"
+                  onClick={() =>
+                    setCurrentInput({ type: "text", title: "text1Title" })
+                  }
+                >
+                  Tytuł tekstu 1
+                </button>
+              </div>
+              {/* second title input */}
+              <div className="">
+                <button
+                  onClick={() =>
+                    setCurrentInput({ type: "text", title: "text1Desc" })
+                  }
+                  className="add_content_btn mt-4"
+                >
+                  Opis tekstu 1
+                </button>
+              </div>
+              {/* second title description input*/}
+              <div className="">
+                <button
+                  className="add_content_btn mt-12"
+                  onClick={() =>
+                    setCurrentInput({ type: "text", title: "text2Title" })
+                  }
+                >
+                  Tytuł tekstu 2 <br />{" "}
+                  <span className="text-sm font-normal">(opcjonalnie)</span>
+                </button>
+              </div>
+              {/* third title input */}
+              <div className="">
+                <button
+                  className="add_content_btn mt-4"
+                  onClick={() =>
+                    setCurrentInput({ type: "text", title: "text2Desc" })
+                  }
+                >
+                  Opis tekstu 2 <br />{" "}
+                  <span className="text-sm font-normal">(opcjonalnie)</span>
+                </button>
+              </div>
+              {/* third title description input*/}
             </div>
-            {/* image input */}
             <div className="flex flex-col items-center">
               <div className="w-full">
-                <button
-                  className="add_image_btn flex items-center justify-center text-zinc-800"
-                  // CHOOSE IMAGE FROM LOCAL IMAGES (BLOB, NOT UPLOADED YET)
-                >
+                <button className="add_image_btn flex items-center justify-center text-zinc-800">
                   <FaImage className="text-7xl" />
                 </button>
               </div>{" "}
-              <ContentButton
-                label="Tytuł tekstu 3"
-                value={productInfo.text2Desc}
-                type="text"
-                title="text3Title"
-                setInput={setCurrentInput}
-                optional={true}
-              />
-              <ContentButton
-                label="Opis tekstu 3"
-                value={productInfo.text3Desc}
-                type="html"
-                title="text3Desc"
-                setInput={setCurrentInput}
-                optional={true}
-              />
+              {/* image input */}
+              <div className="">
+                <button className="add_content_btn mt-4">
+                  Tytuł tekstu 3 <br />{" "}
+                  <span className="text-sm font-normal">(opcjonalnie)</span>
+                </button>
+              </div>
+              {/* title under image input */}
+              <div className="">
+                <button className="add_content_btn mt-4">
+                  Opis tekstu 3 <br />{" "}
+                  <span className="text-sm font-normal">(opcjonalnie)</span>
+                </button>
+              </div>
+              {/* title desc under image input */}
             </div>
           </div>
         </div>
@@ -163,44 +172,31 @@ export default function Page() {
             </button>
           </div>{" "}
           <div className="flex flex-col pl-4">
-            <ContentButton
-              label="Tytuł tekstu 4"
-              value={productInfo.text4Title}
-              type="text"
-              title="text4Title"
-              setInput={setCurrentInput}
-              optional={true}
-            />
-            <ContentButton
-              label="Opis tekstu 4"
-              value={productInfo.text4Desc}
-              type="html"
-              title="text4Desc"
-              setInput={setCurrentInput}
-              optional={true}
-            />
+            <button className="add_content_btn">
+              Tytuł tekstu 4 <br />{" "}
+              <span className="text-sm font-normal">(opcjonalnie)</span>
+            </button>
+            <button className="add_content_btn mt-4">
+              Opis tekstu 4 <br />{" "}
+              <span className="text-sm font-normal">(opcjonalnie)</span>
+            </button>
           </div>
         </div>
 
         <div className="p-12 flex flex-col items-center justify-center">
-          <ContentButton
-            label="Mały tekst nad tytułem zdjęć np. 30 lat doświadczenia / pracujemy z pasją / 1000 zadowolonych
-              klientów"
-            value={productInfo.imagesHeadingSmallText}
-            type="text"
-            title="imagesHeadingSmallText"
-            setInput={setCurrentInput}
-            optional={false}
-          />
-          <ContentButton
-            label="Tytuł do zdjęć realizacji np. Nasze ostatnie realizacje - Flagi i
-              Maszty"
-            value={productInfo.imagesHeadingMainText}
-            type="text"
-            title="imagesHeadingMainText"
-            setInput={setCurrentInput}
-            optional={false}
-          />
+          <button className="add_content_btn">
+            Mały tekst nad tytułem zdjęć <br />
+            <span className="text-sm font-normal">
+              (np. 30 lat doświadczenia / pracujemy z pasją / 1000 zadowolonych
+              klientów)
+            </span>
+          </button>
+          <button className="add_content_btn mt-2">
+            Tytuł do zdjęć realizacji <br />{" "}
+            <span className="text-sm font-normal">
+              (np. Nasze ostatnie realizacje - Flagi i Maszty)
+            </span>
+          </button>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 mt-6">
             {selectedImages?.map((image: any, i: any) => (

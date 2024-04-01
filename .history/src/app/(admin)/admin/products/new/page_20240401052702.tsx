@@ -1,6 +1,6 @@
 "use client";
+import TextInput from "@/components/AdminComponents/TextInput";
 import Image from "next/image";
-import Input from "@/components/AdminComponents/Input";
 import Link from "next/link";
 import { useState } from "react";
 import {
@@ -37,7 +37,7 @@ export default function Page() {
     setSelectedImages([...selectedImages, ...imageFiles]);
   };
   function handleTextInput(e: any) {
-    setProductInfo({ ...productInfo, [e.target.name]: e.target.value });
+    setCurrentInput({ ...productInfo, [e.target.name]: e.target.value });
   }
   return (
     <div className="p-24 w-full">
@@ -46,11 +46,10 @@ export default function Page() {
           currentInput.type === "text" ? "z-10 block" : "-z-10 hidden"
         }`}
       >
-        <Input
+        <TextInput
           value={productInfo[currentInput.title]}
           title={currentInput.title}
           handleChange={handleTextInput}
-          type={currentInput.type}
         />
       </div>
       <div className="w-full bg-white min-h-screen">
